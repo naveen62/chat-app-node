@@ -17,8 +17,8 @@ io.on('connection', (socket) => {
     socket.on('createMsg', (msg) => {
         console.log('message ', msg )
         io.emit('newMsg', {
-            from: 'John',
-            text: 'See you then',
+            from: msg.from,
+            text: msg.text,
             createdAt: 123123
         })
     })
