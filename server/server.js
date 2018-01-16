@@ -8,7 +8,7 @@ const socketIO = require('socket.io');
 var server = http.createServer(app) 
 var io = socketIO(server)
 
-const {generateMsg} = require('./utils/message');
+const {generateMsg, generateLocationMsg} = require('./utils/message');
 
 app.use(express.static(publicPath));
 
@@ -27,6 +27,9 @@ io.on('connection', (socket) => {
         //     text: msg.text,
         //     createdAt: new Date().getDate()
         // })
+    })
+    socket.on('createLocationMessage', (coords) => {
+        io.emit('newLocationMsg', generateLocationMsg('Admin', coords.latitude, coords.longitude))
     })
     socket.on('disconnect', () => {
         console.log('disconnected from the client')

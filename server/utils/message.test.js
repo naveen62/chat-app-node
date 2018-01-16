@@ -1,5 +1,5 @@
 const expect = require('expect');
-var {generateMsg} = require('./message');
+var {generateMsg, generateLocationMsg} = require('./message');
 
 describe('generateMessage', () => {
     it('should generate correct message object', () => {
@@ -9,5 +9,15 @@ describe('generateMessage', () => {
             text: 'mocha testing'
         })
         expect(result.createdAt).toBeA('number')
+    })
+})
+describe('generateLocationMessage', () => {
+    it('should generate correct location object', () => {
+        var geo = generateLocationMsg('naveen', 123, 798);
+        expect(geo).toInclude({
+            from: 'naveen',
+            url: 'https://www.google.com/maps?q=123,798'
+        });
+        expect(geo.createdAt).toBeA('number');
     })
 })
