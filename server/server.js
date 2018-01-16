@@ -21,7 +21,7 @@ io.on('connection', (socket) => {
     socket.on('createMsg', (msg, callback) => {
         console.log('message ', msg )
         io.emit('newMsg', generateMsg(msg.from, msg.text))
-        callback('This is String')
+        callback()
         // socket.broadcast.emit('newMsg', {
         //     from: msg.from,
         //     text: msg.text,
